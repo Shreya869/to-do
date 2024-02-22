@@ -1,53 +1,44 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Global styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5; /* Pastel color background */
+    background-color: #f5f5f5; /* Light gray background */
     padding: 20px;
 }
 
-.notion {
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+.hidden {
+    display: none; /* Hide elements with the 'hidden' class */
 }
 
-.notion-header {
+/* Choose section styles */
+.choose-section {
     text-align: center;
-    padding-bottom: 20px;
-}
-
-.notion-title {
-    font-size: 24px;
-}
-
-.notion-content {
-    padding-top: 20px;
-}
-
-.todo-list {
     margin-bottom: 20px;
 }
 
-.todo-input {
-    width: calc(100% - 70px);
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    outline: none;
+/* Planner section specific styles */
+.planner-section {
+    background-color: #fff; /* White background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
 }
 
-.add-btn {
-    width: 60px;
+/* Planner section input styles */
+.planner-section textarea {
+    width: 100%;
+    height: 200px;
     padding: 10px;
-    background-color: #007bff; /* Blue color for add button */
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+/* Planner section button styles */
+.planner-section button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #007bff; /* Blue color for buttons */
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -55,40 +46,39 @@ body {
     outline: none;
 }
 
-.tasks {
-    list-style-type: none;
+/* To-do list section specific styles */
+.todo-section {
+    background-color: #fff; /* White background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
 }
 
-.task-item {
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
+/* To-do list item styles */
+.todo-item {
     display: flex;
     align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
 }
 
-.checkbox {
+/* To-do list item checkbox styles */
+.todo-item input[type="checkbox"] {
     margin-right: 10px;
 }
 
-.task-text {
+/* To-do list item text styles */
+.todo-item span {
     flex: 1;
 }
 
-.edit-btn,
-.remove-btn {
-    background-color: #dc3545; /* Red color for edit and remove buttons */
+/* To-do list item button styles */
+.todo-item button {
+    padding: 5px 10px;
+    background-color: #dc3545; /* Red color for buttons */
     color: #fff;
     border: none;
     border-radius: 5px;
-    padding: 5px 10px;
     cursor: pointer;
-    margin-left: 10px;
     outline: none;
-}
-
-.edit-btn:hover,
-.remove-btn:hover {
-    background-color: #c82333; /* Darker red color on hover */
 }
