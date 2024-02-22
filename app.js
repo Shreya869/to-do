@@ -11,24 +11,17 @@ document.addEventListener('DOMContentLoaded', function () {
             const taskItem = document.createElement('li');
             taskItem.classList.add('task-item');
             
-            const taskText = document.createElement('input');
-            taskText.classList.add('task-text');
-            taskText.value = task;
-            taskText.addEventListener('blur', () => updateTask(index, taskText)); // Save changes on blur
-
-            const editButton = document.createElement('button');
-            editButton.innerText = 'Edit';
-            editButton.classList.add('edit-btn');
-            editButton.addEventListener('click', () => taskText.focus()); // Focus on text input on edit button click
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.classList.add('checkbox');
+            checkbox.addEventListener('change', () => toggleTask(index, checkbox.checked));
             
-            const removeButton = document.createElement('button');
-            removeButton.innerText = 'Remove';
-            removeButton.classList.add('remove-btn');
-            removeButton.addEventListener('click', () => removeTask(index));
-
+            const taskText = document.createElement('span');
+            taskText.classList.add('task-text');
+            taskText.innerText = task;
+            
+            taskItem.appendChild(checkbox);
             taskItem.appendChild(taskText);
-            taskItem.appendChild(editButton);
-            taskItem.appendChild(removeButton);
             
             taskList.appendChild(taskItem);
         });
@@ -37,25 +30,15 @@ document.addEventListener('DOMContentLoaded', function () {
     function addTask() {
         const taskText = inputField.value.trim();
         if (taskText !== '') {
-            todos.push(taskText);
+            todos.push({ text: taskText, done: false });
             renderTasks();
             inputField.value = '';
         }
     }
 
-    function updateTask(index, taskTextElement) {
-        const newTaskText = taskTextElement.value.trim();
-        if (newTaskText !== '') {
-            todos[index] = newTaskText;
-            renderTasks();
-        }
-    }
-
-    function removeTask(index) {
-        if (confirm('Are you sure you want to remove this task?')) {
-            todos.splice(index, 1);
-            renderTasks();
-        }
+    function toggleTask(index, checked) {
+        todos[index].done = checked;
+        renderTasks();
     }
 
     if (addButton) {
