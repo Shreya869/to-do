@@ -5,27 +5,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let todos = [];
 
-    function renderTasks() {
-        taskList.innerHTML = '';
-        todos.forEach((task, index) => {
-            const taskItem = document.createElement('li');
-            taskItem.classList.add('task-item');
-            
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.classList.add('checkbox');
-            checkbox.addEventListener('change', () => toggleTask(index, checkbox.checked));
-            
-            const taskText = document.createElement('span');
-            taskText.classList.add('task-text');
-            taskText.innerText = task;
-            
-            taskItem.appendChild(checkbox);
-            taskItem.appendChild(taskText);
-            
-            taskList.appendChild(taskItem);
-        });
-    }
+  function renderTasks() {
+    taskList.innerHTML = '';
+    todos.forEach((todo, index) => {
+        const taskItem = document.createElement('li');
+        taskItem.classList.add('task-item');
+        
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.classList.add('checkbox');
+        checkbox.checked = todo.done;
+        checkbox.addEventListener('change', () => toggleTask(index, checkbox.checked));
+        
+        const taskText = document.createElement('span');
+        taskText.classList.add('task-text');
+        taskText.innerText = todo.text; // Display the todo text
+        
+        taskItem.appendChild(checkbox);
+        taskItem.appendChild(taskText);
+        
+        taskList.appendChild(taskItem);
+    });
+}
+
 
     function addTask() {
         const taskText = inputField.value.trim();
