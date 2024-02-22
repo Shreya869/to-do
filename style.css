@@ -4,103 +4,65 @@
     box-sizing: border-box;
 }
 
-body{
-    height: 100%;
-    background-color: rgb(237, 218, 232);
-    box-sizing: border-box;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
 }
 
-h1 {
-	color: #fff;
-	font-size: 3rem;
-	font-weight: 50;
-	text-align: center;
-	margin: 1rem 0 3rem; 
-	font-family: 'Hind', sans-serif;
+.notion {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.title{
-	color: rgb(231, 132, 128);
-	text-transform: uppercase;
-	font-weight: 800;
+.notion-header {
+    background-color: #2f3640;
+    padding: 20px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
-.inputDiv{
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.notion-title {
+    color: #fff;
+    font-size: 24px;
 }
 
-.input{
-    padding: 0.5rem 1rem;
+.notion-content {
+    padding: 20px;
+}
+
+.todo-list {
+    margin-bottom: 20px;
+}
+
+.todo-input {
+    width: calc(100% - 70px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
     outline: none;
-    border: none;
-    height: 50px;
-    border-radius: 25px;
-    width: 350px;
-    margin: 0.25rem;
-    transition: .5s;
-    font-size: 1.15rem;
 }
 
-.add{
-	outline: none;
+.add-btn {
+    width: 60px;
+    padding: 10px;
+    background-color: #2f3640;
+    color: #fff;
     border: none;
-    height: 50px;
-    border-radius: 25px;
-    width: 50px;
-    background-color: black;
-    color: white;
+    border-radius: 5px;
     cursor: pointer;
-    transition: .5s;
-    margin: 0.25rem;
+    outline: none;
 }
 
-.add:hover{
-	opacity: 0.7;
+.tasks {
+    list-style-type: none;
 }
 
-.container{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	margin-top: 2rem;
-}
-
-.item{
-	padding: 0.5rem;
-	border-bottom: 4px solid #fff;
-	margin-bottom: 1.5rem;
-}
-
-.item_input{
-	background: none;
-	outline: none;
-	border: none;
-	color: #000000;
-	font-size: 1.4rem;
-	width: 245px;
-}
-
-.edit{
-	background: none;
-	outline: none;
-	border: none;
-	color: black;
-	font-size: 1.0 rem;
-	font-family: 'Hind', sans-serif;
-	margin: 0 0.5rem;
-	cursor: pointer;
-}
-
-.remove{
-	background: none;
-	outline: none;
-	border: none;
-	color: rgb(250, 7, 12);
-	font-size: 1.4 rem;
-	font-family: 'Hind', sans-serif;
-	cursor: pointer;
+.task-item {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
