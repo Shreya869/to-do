@@ -1,59 +1,113 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const addButton = document.querySelector('.add-btn');
-    const inputField = document.querySelector('.todo-input');
-    const taskList = document.querySelector('.tasks');
+    const plannerBtn = document.querySelector('.planner-btn');
+    const todoBtn = document.querySelector('.todo-btn');
+    const plannerSection = document.querySelector('.planner-section');
+    const todoSection = document.querySelector('.todo-section');
 
-    let todos = [];
+    // Add event listeners to toggle sections
+    plannerBtn.addEventListener('click', function () {
+        plannerSection.classList.remove('hidden');
+        todoSection.classList.add('hidden');
+    });
 
-    function renderTasks() {
-        taskList.innerHTML = '';
-        todos.forEach((todo, index) => {
-            const taskItem = document.createElement('li');
-            taskItem.classList.add('task-item');
-            
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.classList.add('checkbox');
-            checkbox.checked = todo.done;
-            checkbox.addEventListener('change', () => toggleTask(index, checkbox.checked));
-            
-            const taskText = document.createElement('span');
-            taskText.classList.add('task-text');
-            taskText.innerText = todo.text;
-            
-            const editButton = document.createElement('button');
-            editButton.innerText = 'Edit';
-            editButton.classList.add('edit-btn');
-            editButton.addEventListener('click', () => editTask(index, taskText));
-            
-            const removeButton = document.createElement('button');
-            removeButton.innerText = 'Remove';
-            removeButton.classList.add('remove-btn');
-            removeButton.addEventListener('click', () => removeTask(index));
+    todoBtn.addEventListener('click', function () {
+        todoSection.classList.remove('hidden');
+        plannerSection.classList.add('hidden');
+    });
 
-            taskItem.appendChild(checkbox);
-            taskItem.appendChild(taskText);
-            taskItem.appendChild(editButton);
-            taskItem.appendChild(removeButton);
-            
-            taskList.appendChild(taskItem);
+    // Add functionality for planner section
+    const plannerTextarea = plannerSection.querySelector('textarea');
+    const boldButton = plannerSection.querySelector('.bold-btn');
+    const italicButton = plannerSection.querySelector('.italic-btn');
+    const underlineButton = plannerSection.querySelector('.underline-btn');
+    const fontSizeSelect = plannerSection.querySelector('.font-size-select');
+    const fontColorSelect = plannerSection.querySelector('.font-color-select');
+    const headerSelect = plannerSection.querySelector('.header-select');
+    const writeButton = plannerSection.querySelector('.write-btn');
+
+    boldButton.addEventListener('click', function () {
+        document.execCommand('bold', false, null);
+    });
+
+    italicButton.addEventListener('click', function () {
+        document.execCommand('italic', false,
+    });
+
+    underlineButton.addEventListener('click', function () {
+        document.execCommand('underline', false, null);
+    });
+
+    fontSizeSelect.addEventListener('change', function () {
+        document.execCommand('fontSize', false, this.value);
+    });
+
+    fontColorSelect.addEventListener('change', function () {
+        document.execCommand('foreColor', false, this.value);
+    });
+
+    headerSelect.addEventListener('change', function () {
+        document.execCommand('formatBlock', false, this.value);
+    });
+
+    writeButton.addEventListener('click', function () {
+        plannerTextarea.focus();
+    });
+
+    // Add functionality for to-do list section
+    const todoList = document.querySelector('.todo-list');
+    const todoInput = document.querySelector('.todo-input');
+    const addTodoBtn = document.querySelector('.add-todo-btn');
+
+    function createTodoItem(todoText) {
+        const todoItem = document.createElement('li');
+        todoItem.classList.add('todo-item');
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.classList.add('todo-checkbox');
+        todoItem.appendChild(checkbox);
+
+        const todoTextSpan = document.createElement('span');
+        todoTextSpan.innerText = todoText;
+        todoItem.appendChild(todoTextSpan);
+
+        const editBtn = document.createElement('button');
+        editBtn.innerText = 'Edit';
+        editBtn.classList.add('edit-btn');
+        todoItem.appendChild(editBtn);
+
+        const removeBtn = document.createElement('button');
+        removeBtn.innerText = 'Remove';
+        removeBtn.classList.add('remove-btn');
+        todoItem.appendChild(removeBtn);
+
+        todoList.appendChild(todoItem);
+
+        checkbox.addEventListener('change', function () {
+            if (checkbox.checked) {
+                todoTextSpan.style.textDecoration = 'line-through';
+            } else {
+                todoTextSpan.style.textDecoration = 'none';
+            }
+        });
+
+        editBtn.addEventListener('click', function () {
+            const newText = prompt('Enter new text:');
+            if (newText !== null) {
+                todoTextSpan.innerText = newText;
+            }
+        });
+
+        removeBtn.addEventListener('click', function () {
+            todoList.removeChild(todoItem);
         });
     }
 
-    function addTask() {
-        const taskText = inputField.value.trim();
-        if (taskText !== '') {
-            todos.push({ text: taskText, done: false });
-            renderTasks();
-            inputField.value = '';
+    addTodoBtn.addEventListener('click', function () {
+        const todoText = todoInput.value.trim();
+        if (todoText !== '') {
+            createTodoItem(todoText);
+            todoInput.value = '';
         }
-    }
-
-    function toggleTask(index, checked) {
-        todos[index].done = checked;
-        renderTasks();
-    }
-
-    function editTask(index, taskTextElement) {
-        const newTaskText = prompt('Edit the task:', todos[index].text);
-        if (newTaskText !== null)
+    });
+});
