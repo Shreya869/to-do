@@ -69,18 +69,7 @@ body {
 
 /* Your existing CSS styles remain unchanged */
 
-.task-item {
-    background-color: #f9f9f9;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    position: relative; /* Add this to make it a positioned container */
-}
 
-.task-text {
-    display: inline-block;
-    width: calc(100% - 140px); /* Adjust as needed based on button width */
-}
 
 .task-buttons {
     position: absolute;
@@ -100,4 +89,25 @@ body {
 
 .task-buttons button:hover {
     background-color: #bbb;
+}
+
+/* Your existing CSS styles remain unchanged */
+
+.task-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.checkbox {
+    margin-right: 10px;
+}
+
+.task-text {
+    flex: 1;
+}
+
+.add-btn {
+    margin-top: 10px;
 }
