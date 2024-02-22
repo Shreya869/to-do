@@ -3,22 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo List</title>
+    <title>Planner and To-do List</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="notion">
-        <div class="notion-header">
-            <h1 class="notion-title">Todo List</h1>
-        </div>
-        <div class="notion-content">
-            <div class="todo-list">
-                <input type="text" class="todo-input" placeholder="Add a new task">
-                <button class="add-btn">Add</button>
-                <ul class="tasks"></ul>
-            </div>
+    <div class="choose-section">
+        <h1>Choose an Option:</h1>
+        <button class="planner-btn">Planner</button>
+        <button class="todo-btn">To-do List</button>
+    </div>
+
+    <div class="planner-section hidden">
+        <textarea placeholder="Write your plans here..."></textarea>
+        <div class="toolbar">
+            <button class="bold-btn">Bold</button>
+            <button class="italic-btn">Italic</button>
+            <button class="underline-btn">Underline</button>
+            <select class="font-size-select">
+                <option value="1">Font Size 1</option>
+                <option value="2">Font Size 2</option>
+                <option value="3">Font Size 3</option>
+                <option value="4">Font Size 4</option>
+                <option value="5">Font Size 5</option>
+            </select>
+            <select class="font-color-select">
+                <option value="black">Black</option>
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="green">Green</option>
+            </select>
+            <select class="header-select">
+                <option value="h1">Header 1</option>
+                <option value="h2">Header 2</option>
+                <option value="h3">Header 3</option>
+                <option value="h4">Header 4</option>
+                <option value="h5">Header 5</option>
+            </select>
+            <button class="write-btn">Write</button>
         </div>
     </div>
+
+    <div class="todo-section hidden">
+        <input type="text" class="todo-input" placeholder="Add a new task">
+        <button class="add-todo-btn">Add</button>
+        <ul class="todo-list"></ul>
+    </div>
+
     <script src="app.js"></script>
 </body>
 </html>
