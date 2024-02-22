@@ -79,7 +79,7 @@ h1 {
 	background: none;
 	outline: none;
 	border: none;
-	color: #ffffff;
+	color: #000000;
 	font-size: 1.4rem;
 	width: 245px;
 }
@@ -88,7 +88,7 @@ h1 {
 	background: none;
 	outline: none;
 	border: none;
-	color: lime;
+	color: black;
 	font-size: 1.0 rem;
 	font-family: 'Hind', sans-serif;
 	margin: 0 0.5rem;
