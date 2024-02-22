@@ -11,13 +11,15 @@ document.addEventListener('DOMContentLoaded', function () {
             const taskItem = document.createElement('li');
             taskItem.classList.add('task-item');
             
-            const taskText = document.createElement('span');
-            taskText.innerText = task;
-            
+            const taskText = document.createElement('input');
+            taskText.classList.add('task-text');
+            taskText.value = task;
+            taskText.addEventListener('blur', () => updateTask(index, taskText)); // Save changes on blur
+
             const editButton = document.createElement('button');
             editButton.innerText = 'Edit';
             editButton.classList.add('edit-btn');
-            editButton.addEventListener('click', () => editTask(index, taskText));
+            editButton.addEventListener('click', () => taskText.focus()); // Focus on text input on edit button click
             
             const removeButton = document.createElement('button');
             removeButton.innerText = 'Remove';
@@ -41,10 +43,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function editTask(index, taskTextElement) {
-        const newTaskText = prompt('Edit the task:', todos[index]);
-        if (newTaskText !== null) {
-            todos[index] = newTaskText.trim();
+    function updateTask(index, taskTextElement) {
+        const newTaskText = taskTextElement.value.trim();
+        if (newTaskText !== '') {
+            todos[index] = newTaskText;
             renderTasks();
         }
     }
