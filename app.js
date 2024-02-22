@@ -5,29 +5,40 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let todos = [];
 
-  function renderTasks() {
-    taskList.innerHTML = '';
-    todos.forEach((todo, index) => {
-        const taskItem = document.createElement('li');
-        taskItem.classList.add('task-item');
-        
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.classList.add('checkbox');
-        checkbox.checked = todo.done;
-        checkbox.addEventListener('change', () => toggleTask(index, checkbox.checked));
-        
-        const taskText = document.createElement('span');
-        taskText.classList.add('task-text');
-        taskText.innerText = todo.text; // Display the todo text
-        
-        taskItem.appendChild(checkbox);
-        taskItem.appendChild(taskText);
-        
-        taskList.appendChild(taskItem);
-    });
-}
+    function renderTasks() {
+        taskList.innerHTML = '';
+        todos.forEach((todo, index) => {
+            const taskItem = document.createElement('li');
+            taskItem.classList.add('task-item');
+            
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.classList.add('checkbox');
+            checkbox.checked = todo.done;
+            checkbox.addEventListener('change', () => toggleTask(index, checkbox.checked));
+            
+            const taskText = document.createElement('span');
+            taskText.classList.add('task-text');
+            taskText.innerText = todo.text;
+            
+            const editButton = document.createElement('button');
+            editButton.innerText = 'Edit';
+            editButton.classList.add('edit-btn');
+            editButton.addEventListener('click', () => editTask(index, taskText));
+            
+            const removeButton = document.createElement('button');
+            removeButton.innerText = 'Remove';
+            removeButton.classList.add('remove-btn');
+            removeButton.addEventListener('click', () => removeTask(index));
 
+            taskItem.appendChild(checkbox);
+            taskItem.appendChild(taskText);
+            taskItem.appendChild(editButton);
+            taskItem.appendChild(removeButton);
+            
+            taskList.appendChild(taskItem);
+        });
+    }
 
     function addTask() {
         const taskText = inputField.value.trim();
@@ -43,17 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
         renderTasks();
     }
 
-    if (addButton) {
-        addButton.addEventListener('click', addTask);
-    } else {
-        console.error('Add button not found!');
-    }
-
-    inputField.addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-            addTask();
-        }
-    });
-
-    renderTasks();
-});
+    function editTask(index, taskTextElement) {
+        const newTaskText = prompt('Edit the task:', todos[index].text);
+        if (newTaskText !== null)
