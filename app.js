@@ -10,7 +10,24 @@ document.addEventListener('DOMContentLoaded', function () {
         todos.forEach((task, index) => {
             const taskItem = document.createElement('li');
             taskItem.classList.add('task-item');
-            taskItem.innerText = task;
+            
+            const taskText = document.createElement('span');
+            taskText.innerText = task;
+            
+            const editButton = document.createElement('button');
+            editButton.innerText = 'Edit';
+            editButton.classList.add('edit-btn');
+            editButton.addEventListener('click', () => editTask(index, taskText));
+            
+            const removeButton = document.createElement('button');
+            removeButton.innerText = 'Remove';
+            removeButton.classList.add('remove-btn');
+            removeButton.addEventListener('click', () => removeTask(index));
+
+            taskItem.appendChild(taskText);
+            taskItem.appendChild(editButton);
+            taskItem.appendChild(removeButton);
+            
             taskList.appendChild(taskItem);
         });
     }
@@ -21,6 +38,21 @@ document.addEventListener('DOMContentLoaded', function () {
             todos.push(taskText);
             renderTasks();
             inputField.value = '';
+        }
+    }
+
+    function editTask(index, taskTextElement) {
+        const newTaskText = prompt('Edit the task:', todos[index]);
+        if (newTaskText !== null) {
+            todos[index] = newTaskText.trim();
+            renderTasks();
+        }
+    }
+
+    function removeTask(index) {
+        if (confirm('Are you sure you want to remove this task?')) {
+            todos.splice(index, 1);
+            renderTasks();
         }
     }
 
@@ -35,4 +67,6 @@ document.addEventListener('DOMContentLoaded', function () {
             addTask();
         }
     });
+
+    renderTasks();
 });
