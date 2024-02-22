@@ -24,7 +24,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    addButton.addEventListener('click', addTask);
+    if (addButton) {
+        addButton.addEventListener('click', addTask);
+    } else {
+        console.error('Add button not found!');
+    }
+
     inputField.addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
             addTask();
