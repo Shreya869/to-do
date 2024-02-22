@@ -1,85 +1,33 @@
-const container = document.querySelector('.container');
-var inputValue = document.querySelector('.input');
-const add = document.querySelector('.add');
+document.addEventListener('DOMContentLoaded', function () {
+    const addButton = document.querySelector('.add-btn');
+    const inputField = document.querySelector('.todo-input');
+    const taskList = document.querySelector('.tasks');
 
-if(window.localStorage.getItem("todos") == undefined){
-     var todos = [];
-     window.localStorage.setItem("todos", JSON.stringify(todos));
-}
+    let todos = [];
 
-var todosEX = window.localStorage.getItem("todos");
-var todos = JSON.parse(todosEX);
-
-
-class item{
-	constructor(name){
-		this.createItem(name);
-	}
-    createItem(name){
-    	var itemBox = document.createElement('div');
-        itemBox.classList.add('item');
-
-    	var input = document.createElement('input');
-    	input.type = "text";
-    	input.disabled = true;
-    	input.value = name;
-    	input.classList.add('item_input');
-
-    	var edit = document.createElement('button');
-    	edit.classList.add('edit');
-    	edit.innerHTML = "EDIT";
-    	edit.addEventListener('click', () => this.edit(input, name));
-
-    	var remove = document.createElement('button');
-    	remove.classList.add('remove');
-    	remove.innerHTML = "REMOVE";
-    	remove.addEventListener('click', () => this.remove(itemBox, name));
-
-    	container.appendChild(itemBox);
-
-        itemBox.appendChild(input);
-        itemBox.appendChild(edit);
-        itemBox.appendChild(remove);
-
+    function renderTasks() {
+        taskList.innerHTML = '';
+        todos.forEach((task, index) => {
+            const taskItem = document.createElement('li');
+            taskItem.classList.add('task-item');
+            taskItem.innerText = task;
+            taskList.appendChild(taskItem);
+        });
     }
 
-    edit(input, name){
-        if(input.disabled == true){
-           input.disabled = !input.disabled;
-        }
-    	else{
-            input.disabled = !input.disabled;
-            let indexof = todos.indexOf(name);
-            todos[indexof] = input.value;
-            window.localStorage.setItem("todos", JSON.stringify(todos));
+    function addTask() {
+        const taskText = inputField.value.trim();
+        if (taskText !== '') {
+            todos.push(taskText);
+            renderTasks();
+            inputField.value = '';
         }
     }
 
-    remove(itemBox, name){
-        itemBox.parentNode.removeChild(itemBox);
-        let index = todos.indexOf(name);
-        todos.splice(index, 1);
-        window.localStorage.setItem("todos", JSON.stringify(todos));
-    }
-}
-
-add.addEventListener('click', check);
-window.addEventListener('keydown', (e) => {
-	if(e.which == 13){
-		check();
-	}
-})
-
-function check(){
-	if(inputValue.value != ""){
-		new item(inputValue.value);
-        todos.push(inputValue.value);
-        window.localStorage.setItem("todos", JSON.stringify(todos));
-		inputValue.value = "";
-	}
-}
-
-
-for (var v = 0 ; v < todos.length ; v++){
-    new item(todos[v]);
-}
+    addButton.addEventListener('click', addTask);
+    inputField.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            addTask();
+        }
+    });
+});
