@@ -6,31 +6,30 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+    background-color: #f5f5f5; /* Pastel color background */
+    padding: 20px;
 }
 
 .notion {
-    max-width: 800px;
-    margin: 20px auto;
+    max-width: 600px;
+    margin: 0 auto;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
 }
 
 .notion-header {
-    background-color: #2f3640;
-    padding: 20px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    text-align: center;
+    padding-bottom: 20px;
 }
 
 .notion-title {
-    color: #fff;
     font-size: 24px;
 }
 
 .notion-content {
-    padding: 20px;
+    padding-top: 20px;
 }
 
 .todo-list {
@@ -48,7 +47,7 @@ body {
 .add-btn {
     width: 60px;
     padding: 10px;
-    background-color: #2f3640;
+    background-color: #007bff; /* Blue color for add button */
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -61,43 +60,12 @@ body {
 }
 
 .task-item {
-    background-color: #f9f9f9;
+    background-color: #fff;
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 10px;
-}
-
-/* Your existing CSS styles remain unchanged */
-
-
-
-.task-buttons {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-}
-
-.task-buttons button {
-    margin-left: 5px;
-    background-color: #ccc;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-.task-buttons button:hover {
-    background-color: #bbb;
-}
-
-/* Your existing CSS styles remain unchanged */
-
-.task-item {
     display: flex;
     align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
 }
 
 .checkbox {
@@ -108,6 +76,19 @@ body {
     flex: 1;
 }
 
-.add-btn {
-    margin-top: 10px;
+.edit-btn,
+.remove-btn {
+    background-color: #dc3545; /* Red color for edit and remove buttons */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 10px;
+    outline: none;
+}
+
+.edit-btn:hover,
+.remove-btn:hover {
+    background-color: #c82333; /* Darker red color on hover */
 }
