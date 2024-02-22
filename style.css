@@ -66,3 +66,38 @@ body {
     border-radius: 5px;
     margin-bottom: 10px;
 }
+
+/* Your existing CSS styles remain unchanged */
+
+.task-item {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    position: relative; /* Add this to make it a positioned container */
+}
+
+.task-text {
+    display: inline-block;
+    width: calc(100% - 140px); /* Adjust as needed based on button width */
+}
+
+.task-buttons {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+.task-buttons button {
+    margin-left: 5px;
+    background-color: #ccc;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.task-buttons button:hover {
+    background-color: #bbb;
+}
